@@ -5,6 +5,7 @@ import az.edu.ada.wm2.lab6.model.Product;
 import az.edu.ada.wm2.lab6.model.dto.CategoryRequestDto;
 import az.edu.ada.wm2.lab6.model.dto.CategoryResponseDto;
 import az.edu.ada.wm2.lab6.model.dto.ProductResponseDto;
+import az.edu.ada.wm2.lab6.model.mapper.CategoryMapper;
 import az.edu.ada.wm2.lab6.model.mapper.ProductMapper;
 import az.edu.ada.wm2.lab6.repository.CategoryRepository;
 import az.edu.ada.wm2.lab6.repository.ProductRepository;
@@ -33,17 +34,16 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional
     public CategoryResponseDto create(CategoryRequestDto dto) {
-        Category category = new Category();
-        category.setName(dto.getName());
+        Category category = CategoryMapper.toEntity(dto);
         Category saved = categoryRepository.save(category);
-        return new CategoryResponseDto(saved.getId(), saved.getName());
+        return CategoryMapper.toResponseDto(saved);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<CategoryResponseDto> getAll() {
         return categoryRepository.findAll().stream()
-                .map(c -> new CategoryResponseDto(c.getId(), c.getName()))
+                .map(CategoryMapper::toResponseDto)
                 .toList();
     }
 
