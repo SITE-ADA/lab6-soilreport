@@ -8,6 +8,15 @@ group = 'az.edu.ada.wm2'
 version = '0.0.1-SNAPSHOT'
 description = 'Demo project for Spring Boot'
 
+// Keep Gradle output off OneDrive/Desktop to avoid "Unable to delete directory ... build\classes"
+// (OneDrive + antivirus + IDE often lock files under the project folder.)
+def gradleBuildOut = System.getenv('LOCALAPPDATA')
+if (gradleBuildOut != null && !gradleBuildOut.isBlank()) {
+	layout.buildDirectory.set(file("${gradleBuildOut}/GradleBuildOut/${rootProject.name}"))
+} else {
+	layout.buildDirectory.set(file("${System.getProperty('user.home')}/.gradle-build-out/${rootProject.name}"))
+}
+
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(25)
@@ -20,7 +29,19 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.mapstruct:mapstruct:1.6.3'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+	runtimeOnly 'com.h2database:h2'
+	// Spring Boot 4: H2 console is not wired by webmvc alone; needs this module
+	implementation 'org.springframework.boot:spring-boot-h2console'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-data-jpa-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
