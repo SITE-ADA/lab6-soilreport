@@ -1,5 +1,7 @@
 package az.edu.ada.wm2.lab6.service;
 
+// QUESTION5LAB6
+
 import az.edu.ada.wm2.lab6.model.dto.ProductRequestDto;
 import az.edu.ada.wm2.lab6.model.dto.ProductResponseDto;
 
@@ -10,13 +12,13 @@ import java.util.UUID;
 
 public interface ProductService {
 
-    ProductResponseDto createProduct(ProductRequestDto dto);
+    ProductResponseDto createProduct(ProductRequestDto product);
 
     ProductResponseDto getProductById(UUID id);
 
     List<ProductResponseDto> getAllProducts();
 
-    ProductResponseDto updateProduct(UUID id, ProductRequestDto dto);
+    ProductResponseDto updateProduct(UUID id, ProductRequestDto product);
 
     void deleteProduct(UUID id);
 

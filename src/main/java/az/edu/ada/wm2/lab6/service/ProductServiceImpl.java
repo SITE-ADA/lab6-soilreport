@@ -1,5 +1,7 @@
 package az.edu.ada.wm2.lab6.service;
 
+// QUESTION5LAB6 — uses ProductRepository / CategoryRepository (JpaRepository), not in-memory Map
+
 import az.edu.ada.wm2.lab6.model.Category;
 import az.edu.ada.wm2.lab6.model.Product;
 import az.edu.ada.wm2.lab6.model.dto.ProductRequestDto;
@@ -33,13 +35,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public ProductResponseDto createProduct(ProductRequestDto dto) {
-        if (dto.getPrice() == null || dto.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
+    public ProductResponseDto createProduct(ProductRequestDto productDto) {
+        if (productDto.getPrice() == null || productDto.getPrice().compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Price must be positive");
         }
-        Product product = productMapper.toEntity(dto);
-        if (dto.getCategoryIds() != null && !dto.getCategoryIds().isEmpty()) {
-            List<Category> categories = categoryRepository.findAllById(dto.getCategoryIds());
+        Product product = productMapper.toEntity(productDto);
+        if (productDto.getCategoryIds() != null && !productDto.getCategoryIds().isEmpty()) {
+            List<Category> categories = categoryRepository.findAllById(productDto.getCategoryIds());
             for (Category category : categories) {
                 product.getCategories().add(category);
                 category.getProducts().add(product);
@@ -67,20 +69,20 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public ProductResponseDto updateProduct(UUID id, ProductRequestDto dto) {
-        if (dto.getPrice() != null && dto.getPrice().compareTo(BigDecimal.ZERO) < 0) {
+    public ProductResponseDto updateProduct(UUID id, ProductRequestDto productDto) {
+        if (productDto.getPrice() != null && productDto.getPrice().compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Price cannot be negative");
         }
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
-        if (dto.getProductName() != null) {
-            product.setProductName(dto.getProductName());
+        if (productDto.getProductName() != null) {
+            product.setProductName(productDto.getProductName());
         }
-        if (dto.getPrice() != null) {
-            product.setPrice(dto.getPrice());
+        if (productDto.getPrice() != null) {
+            product.setPrice(productDto.getPrice());
         }
-        if (dto.getExpirationDate() != null) {
-            product.setExpirationDate(dto.getExpirationDate());
+        if (productDto.getExpirationDate() != null) {
+            product.setExpirationDate(productDto.getExpirationDate());
         }
         return productMapper.toResponseDto(productRepository.save(product));
     }

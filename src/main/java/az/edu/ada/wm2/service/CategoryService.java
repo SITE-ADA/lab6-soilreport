@@ -1,5 +1,7 @@
 package az.edu.ada.wm2.service;
 
+// QUESTION5LAB6
+
 import az.edu.ada.wm2.lab6.model.dto.CategoryRequestDto;
 import az.edu.ada.wm2.lab6.model.dto.CategoryResponseDto;
 import az.edu.ada.wm2.lab6.model.dto.ProductResponseDto;
@@ -13,7 +15,7 @@ public interface CategoryService {
 
     List<CategoryResponseDto> getAll();
 
-    void addProduct(UUID categoryId, UUID productId);
+    CategoryResponseDto addProduct(UUID categoryId, UUID productId);
 
     List<ProductResponseDto> getProducts(UUID categoryId);
 }

@@ -1,5 +1,7 @@
 package az.edu.ada.wm2.service;
 
+// QUESTION5LAB6 — uses CategoryRepository / ProductRepository (JpaRepository)
+
 import az.edu.ada.wm2.lab6.model.Category;
 import az.edu.ada.wm2.lab6.model.Product;
 import az.edu.ada.wm2.lab6.model.dto.CategoryRequestDto;
@@ -49,7 +51,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
-    public void addProduct(UUID categoryId, UUID productId) {
+    public CategoryResponseDto addProduct(UUID categoryId, UUID productId) {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new RuntimeException("Category not found with id: " + categoryId));
         Product product = productRepository.findById(productId)
@@ -57,6 +59,7 @@ public class CategoryServiceImpl implements CategoryService {
         product.getCategories().add(category);
         category.getProducts().add(product);
         productRepository.save(product);
+        return CategoryMapper.toResponseDto(category);
     }
 
     @Override
