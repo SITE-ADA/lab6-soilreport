@@ -1,4 +1,23 @@
 package az.edu.ada.wm2.lab6.model.dto;
 
-public record CategoryRequestDto(String name) {
+// QUESTION3LAB6
+
+public class CategoryRequestDto {
+
+    private String name;
+
+    public CategoryRequestDto() {
+    }
+
+    public CategoryRequestDto(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

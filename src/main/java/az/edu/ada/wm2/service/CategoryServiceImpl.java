@@ -34,16 +34,16 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public CategoryResponseDto create(CategoryRequestDto dto) {
         Category category = new Category();
-        category.setName(dto.name());
+        category.setName(dto.getName());
         Category saved = categoryRepository.save(category);
-        return new CategoryResponseDto(saved.getName());
+        return new CategoryResponseDto(saved.getId(), saved.getName());
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<CategoryResponseDto> getAll() {
         return categoryRepository.findAll().stream()
-                .map(c -> new CategoryResponseDto(c.getName()))
+                .map(c -> new CategoryResponseDto(c.getId(), c.getName()))
                 .toList();
     }
 
