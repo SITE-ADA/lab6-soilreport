@@ -1,7 +1,5 @@
 package az.edu.ada.wm2.lab6.model.mapper;
 
-// QUESTION4LAB6 — MapStruct
-
 import az.edu.ada.wm2.lab6.model.Category;
 import az.edu.ada.wm2.lab6.model.Product;
 import az.edu.ada.wm2.lab6.model.dto.ProductRequestDto;

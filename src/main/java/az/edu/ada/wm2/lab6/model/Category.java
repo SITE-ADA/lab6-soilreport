@@ -1,7 +1,5 @@
 package az.edu.ada.wm2.lab6.model;
 
-// QUESTION2LAB6 — Category entity (many-to-many inverse side; Product owns the association)
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

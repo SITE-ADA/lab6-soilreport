@@ -1,7 +1,5 @@
 package az.edu.ada.wm2.lab6.model;
 
-// QUESTION1LAB6 — JPA entity + relationships for Lab 6 Q1
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

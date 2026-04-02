@@ -1,7 +1,5 @@
 package az.edu.ada.wm2.lab6.model.mapper;
 
-// QUESTION4LAB6 — manual mapping
-
 import az.edu.ada.wm2.lab6.model.Category;
 import az.edu.ada.wm2.lab6.model.dto.CategoryRequestDto;
 import az.edu.ada.wm2.lab6.model.dto.CategoryResponseDto;

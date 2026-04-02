@@ -1,7 +1,5 @@
 package az.edu.ada.wm2.lab6.service;
 
-// QUESTION5LAB6 — uses ProductRepository / CategoryRepository (JpaRepository), not in-memory Map
-
 import az.edu.ada.wm2.lab6.model.Category;
 import az.edu.ada.wm2.lab6.model.Product;
 import az.edu.ada.wm2.lab6.model.dto.ProductRequestDto;

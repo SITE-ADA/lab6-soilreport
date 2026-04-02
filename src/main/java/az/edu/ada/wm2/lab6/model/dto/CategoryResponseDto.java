@@ -1,7 +1,5 @@
 package az.edu.ada.wm2.lab6.model.dto;
 
-// QUESTION3LAB6
-
 import java.util.UUID;
 
 public class CategoryResponseDto {

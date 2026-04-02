@@ -1,7 +1,5 @@
 package az.edu.ada.wm2.lab6.repository;
 
-// QUESTION1LAB6 — Spring Data JPA repository (replaces manual in-memory impl)
-
 import az.edu.ada.wm2.lab6.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -32,8 +32,12 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductRequestDto product) {
-        ProductResponseDto created = productService.createProduct(product);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+        try {
+            ProductResponseDto created = productService.createProduct(product);
+            return ResponseEntity.status(HttpStatus.CREATED).body(created);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
     @GetMapping("/{id}")
@@ -56,6 +60,8 @@ public class ProductController {
             @RequestBody ProductRequestDto product) {
         try {
             return ResponseEntity.ok(productService.updateProduct(id, product));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }

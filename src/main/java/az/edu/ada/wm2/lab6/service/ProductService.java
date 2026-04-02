@@ -1,7 +1,5 @@
 package az.edu.ada.wm2.lab6.service;
 
-// QUESTION5LAB6
-
 import az.edu.ada.wm2.lab6.model.dto.ProductRequestDto;
 import az.edu.ada.wm2.lab6.model.dto.ProductResponseDto;
 

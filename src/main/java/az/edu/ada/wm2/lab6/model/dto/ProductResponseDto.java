@@ -1,7 +1,5 @@
 package az.edu.ada.wm2.lab6.model.dto;
 
-// QUESTION3LAB6
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
